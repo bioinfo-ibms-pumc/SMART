@@ -50,11 +50,11 @@ options:
 ## Examples
 1. To annotate all formulae stored in a file named as "temp.list", use the following code
 ```
-  py run_CMD.py -i temp.list -d smart.db -p 0
+  py SMART.py -i temp.list -d smart.db -p 0
 ```
 2. To annotate a single formula, use the following code
 ```
-  py run_CMD.py -i 185.9934 -d smart.db -p 0
+  py SMART.py -i 185.9934 -d smart.db -p 0
 ```
 
 ---
