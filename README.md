@@ -22,7 +22,7 @@ python Main.py
 2. Type the m/z values from the left input text(such as 185.9934), and then set up all the parameters in the middle. Just click the 'Predict' button. Results will be shown in the right table (DB: H:HMDB, E:chEMBL, P:PubChem).
 ![image](https://github.com/bioinfo-ibms-pumc/SMART/blob/main/interface.gif) 
 
-## Predict formula with command line in batch mode
+## Assign formula with command line
 
 ```  
 SMART.py [-h] -i INPUT [-p POLARITY] -d DATABASE [-e EXTENSION] [-m PPM] [-v VERBOSE]
