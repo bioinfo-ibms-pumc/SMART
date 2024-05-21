@@ -62,4 +62,4 @@ options:
 
 If you use SMART for your research, please kindly cite the following paper:
 
-Cao Y, et al., (2024) SMART: A Cell Type Annotation Tool for Single-Cell RNA-seq Data. Front. Genet. 11:490. doi:  [https://doi.org/10.3389/fgene.2020.00490](https://doi.org/10.3389/fgene.2020.00490)
+Cao Y, et al., SMART: an approach for accurate formula assignment in spatially-resolved metabolomics.XXX
