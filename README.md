@@ -6,7 +6,7 @@ Any suggestion is welcome.
 
 ## SMART-Database download (Date: 2024/5/20)
 
-1. Since the raw SMART-database consists of huge number of formulae with their evidences, here we give a lite version of SMART-database which contained only formulae from HMDB and biological extension formulae from HMDB. DB file could be downloaded from [here](https://figshare.com/s/01360a81efe87136b65f). User want to used the raw SMART-database could contact with us, and we are considering providing an online version in the future.
+1. Since the raw SMART-database consists of huge number of formulae with their evidences, here we give a lite version of SMART-database which contained only formulae from HMDB and biological extension formulae from HMDB. DB file could be downloaded from [here](https://figshare.com/s/01360a81efe87136b65f). Users who want to use the raw SMART-database can contact us, and we are considering providing an online version in the future.
 ##
 
 ## SMART Download and Installation
@@ -19,7 +19,7 @@ pip install pandas numpy scipy openpyxl
 ```
 python Main.py
 ```
-2. Type the m/z values from the left input text(such as 185.9934), and then set up all the parameters in the middle. Just click the 'Predict' button. Results will be shown in the right table (DB: H:HMDB, E:chEMBL, P:PubChem).
+2. Type m/z values in the left input text(such as 185.9934), and then set up all the parameters in the middle. Click the 'Predict' button and results will be shown in the right table (DB: H:HMDB, E:chEMBL, P:PubChem).
 ![image](https://github.com/bioinfo-ibms-pumc/SMART/blob/main/interface.gif) 
 
 ## Assign formula with command line
