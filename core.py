@@ -183,7 +183,7 @@ class SearchModel(object):
         return res1
         pass
 
-
+    # a simple version to search against the coreset in smart-database.
     def search_detail(self,mz,cur,exttag,ppm,verbose):
         mzl = mz - ppm / 1e6 * mz
         mzh = mz + ppm / 1e6 * mz
