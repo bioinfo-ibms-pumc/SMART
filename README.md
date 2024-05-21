@@ -12,7 +12,7 @@ Any suggestion is welcome.
 ## SMART Download and Installation
 ```
 git clone https://github.com/bioinfo-ibms-pumc/SMART.git
-pip install pandas numpy scipy openpyxl
+pip install pyqt5 sqlite3 numpy
 ```
 ## Assign formula with interface
 1. Launch the main interface with command:
