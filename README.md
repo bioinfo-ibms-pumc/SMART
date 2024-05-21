@@ -4,7 +4,7 @@ Spatially-resolved metabolomics plays a critical role in unraveling tissue-speci
 <div align="center"> <img src="https://github.com/bioinfo-ibms-pumc/SMART/blob/main/workflows.png"> </div>
 
 
-SMART is maintained by Yinghao Cao.[yhcao@ibms.pumc.edu.cn].<br><br>
+SMART is maintained by Yinghao Cao.[yhcao@ibms.pumc.edu.cn].<br>
 Any suggestion is welcome.
 
 ## SMART-Database download (Date: 2024/5/20)
