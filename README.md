@@ -1,8 +1,8 @@
 # SMART: a spatially metabolite annotation predictor tool
 Spatially-resolved metabolomics plays a critical role in unraveling tissue-specific metabolic complexities. This profound technology, however, generates thousands of features formula annotation of which is far behind that based on LC-MS/MS. Here we introduce SMART, an open-source platform for accurate formula assignment in mass spectrometry imaging. SMART constructs a database consisting of 600 million formulae connected by DBEdges which originate from HMDB, chEMBL, PubChem, or BioEdges from KEGG biological reactant pairs. Utilizing decision voting-based strategy, SMART extracts formula network connecting m/z interested and scores the potential candidates with evidences like linked formulae, DBEdges/BioEdges, and PPMs. Benchmarking on reference datasets demonstrates SMART is able to predict the formulae with a desirable precision.<br><br>
-SMART is maintained by Yinghao Cao. [yhcao@ibms.pumc.edu.cn].
+
 <div align="center"> <img src="https://github.com/bioinfo-ibms-pumc/SMART/blob/main/workflows.png"> </div>
-Any suggestion is welcome.
+SMART is maintained by Yinghao Cao. [yhcao@ibms.pumc.edu.cn]. Any suggestion is welcome.
 
 ## SMART-Database download (Date: 2024/5/20)
 
