@@ -6,7 +6,7 @@ Any suggestion is welcome.
 
 ## SMART-Database download (Date: 2024/5/20)
 
-1. Since the raw SMART-database consists of huge number of formulae with their evidences, here we give a lite version of SMART-database which contained only formulae from HMDB and biological extension formulae from HMDB. DB file could be downloaded from here[Alt](https://figshare.com/s/01360a81efe87136b65f). User want to used the raw SMART-database could contact with us, and we are considering providing an online version in the future.
+1. Since the raw SMART-database consists of huge number of formulae with their evidences, here we give a lite version of SMART-database which contained only formulae from HMDB and biological extension formulae from HMDB. DB file could be downloaded from [here](https://figshare.com/s/01360a81efe87136b65f). User want to used the raw SMART-database could contact with us, and we are considering providing an online version in the future.
 ##
 
 ## SMART Download and Installation
