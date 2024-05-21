@@ -49,7 +49,6 @@ def check_float(s):
             if lleft.isdigit():
                 return False
         elif left.isdigit() and right.isdigit():
-            # 判断是否为正小数
             return True
     elif s.isdigit():
         s = int(s)
