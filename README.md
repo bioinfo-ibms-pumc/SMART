@@ -6,10 +6,7 @@ Spatially-resolved metabolomics plays a critical role in unraveling tissue-speci
 
 SMART is maintained by Yinghao Cao.[yhcao@ibms.pumc.edu.cn]. Any suggestion is welcome.
 
-## SMART-Database download (Date: 2024/5/20)
 
-1. Since the raw SMART-database consists of huge number of formulae with their evidences, here we give a lite version of SMART-database which contained only formulae from HMDB and biological extension formulae from HMDB. DB file could be downloaded from [here](https://figshare.com/s/01360a81efe87136b65f). Users who want to use the raw SMART-database can contact us, and we are considering providing an online version in the future.
-##
 
 ## SMART Download and Installation
 ```
@@ -58,6 +55,10 @@ options:
 ```
   py SMART.py -i 185.9934 -d smart.db -p 0
 ```
+
+## SMART-Database download
+Since the raw SMART-database consists of huge number of formulae with their evidences, users who want to use the raw SMART-database can contact us, and we are considering providing an online version in the future.
+##
 
 ---
 
