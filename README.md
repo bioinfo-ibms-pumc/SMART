@@ -57,7 +57,7 @@ options:
 ```
 
 ## SMART-Database download
-Since the raw SMART-database consists of huge number of formulae with their evidences, users who want to use the raw SMART-database can contact us, and we are considering providing an online version in the future.
+Since the raw SMART-database consists of huge number of formulae with their evidences, with database size exceeds 1 Terabyte, users who want to use the raw SMART-database can contact us, and we are considering providing an online version in the future.
 ##
 
 ---
