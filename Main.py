@@ -7,6 +7,7 @@
 #! /usr/bin/python
 
 import sys
+import os
 
 from PyQt5.QtWidgets import QMainWindow,QApplication,QDesktopWidget
 from window import Ui_MainWindow
@@ -18,6 +19,8 @@ import sqlite3
 class MainWindow(QMainWindow,Ui_MainWindow):
     def __init__(self,parent=None):
         super(MainWindow,self).__init__(parent)
+        if not os.path.exists("smart.db"):
+            print("Warning, no smart database found.")
         self.conn = sqlite3.connect("smart.db")
         self.cur = self.conn.cursor()
         self.setupUi(self)
