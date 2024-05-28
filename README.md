@@ -62,7 +62,3 @@ Since the raw SMART-database consists of huge number of formulae with their evid
 
 ---
 
-
-If you use SMART for your research, please kindly cite the following paper:
-
-Cao Y, et al., SMART: an approach for accurate formula assignment in spatially-resolved metabolomics.XXX
