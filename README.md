@@ -39,8 +39,6 @@ options:
                         Polarity information for formula assignment. (Default: +, [-,0])
   -d DATABASE, --database DATABASE
                         SMART-Database file for formula assignment.
-  -e EXTENSION, --extension EXTENSION
-                        Include extension candidates for formula assignment.
   -m PPM, --ppm PPM     PPM threshold for formula assignment (Default: 5).
   -v VERBOSE, --verbose VERBOSE
                         Peak group per mz for formula assignment (Default: 5; Only integer large than 1).
