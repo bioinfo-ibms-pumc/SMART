@@ -11,7 +11,7 @@ SMART is maintained by Yinghao Cao.[yhcao@ibms.pumc.edu.cn]. Any suggestion is w
 ## SMART Download and Installation
 ```
 git clone https://github.com/bioinfo-ibms-pumc/SMART.git
-pip install pyqt5 sqlite3 numpy
+pip install pyqt5 numpy
 ```
 ## Assign formula with interface
 1. Launch the main interface with command:
