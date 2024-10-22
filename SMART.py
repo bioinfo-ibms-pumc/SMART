@@ -36,8 +36,7 @@ Version: 1.0
     #parser.add_argument('-e', '--extension', action="store_true",
     #                       help="Include extension candidates for formula assignment. ")
     parser.add_argument('-m', '--ppm', default=5, help="PPM threshold for formula assignment (Default: 5).")
-    parser.add_argument('-v', '--verbose', default=False,
-                        help="Peak group per mz for formula assignment (Default: 5; Only integer large than 1).")
+
 
     return parser
 
