@@ -11,6 +11,7 @@ import sys
 import re
 import os
 import argparse
+import pickle
 from core import SearchModel
 import sqlite3
 
@@ -30,6 +31,8 @@ Version: 1.0
                         help="Polarity information for formula assignment. (Default: +, [-,0])")
     parser.add_argument('-d', '--database', required=True,
                         help="SMART-Database file for formula assignment.")
+    parser.add_argument('-l', '--model', required=True,
+                        help="MLR model file for formula assignment.")
     #parser.add_argument('-e', '--extension', action="store_true",
     #                       help="Include extension candidates for formula assignment. ")
     parser.add_argument('-m', '--ppm', default=5, help="PPM threshold for formula assignment (Default: 5).")
@@ -67,6 +70,9 @@ def run_cmd(args):
         out.write("mz\tRawFormula\tID\tFormula\tm/z\tppm\tscore\tDB\n")
         conn = sqlite3.connect(args.database)
         cur = conn.cursor()
+        fin = open(args.model,"rb")
+        lr = pickle.load(fin)
+        fin.close()
         i = 0
         with open(args.input,"r") as infile:
             for line in infile:
@@ -75,7 +81,7 @@ def run_cmd(args):
                 mz = mzs[0]
                 i += 1
                 #res = sm.search(mz,iontag,cur,args.extension,ppm_error=args.ppm,verbose=False)
-                res = sm.search(mz,iontag,cur,ppm_error=args.ppm,verbose=False)
+                res = sm.search(mz,iontag,cur,ppm_error=args.ppm,lr=lr,verbose=False)
                 if len(res) > 0:
                     #for s in res:
                     #print(i,mz,s)

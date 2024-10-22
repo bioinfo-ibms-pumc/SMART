@@ -7,7 +7,7 @@
 #! /usr/bin/python
 
 import collections
-from numpy import log2,sqrt
+from numpy import log2,sqrt,nan_to_num
 
 class SearchModel(object):
     IONS = {
@@ -170,7 +170,7 @@ class SearchModel(object):
         return "-".join(a1) + "_" + b, s
 
     ### main interface for smart, return candidate list 
-    def search(self,mz,iontag,cur,ppm_error=5,verbose=False):
+    def search(self,mz,iontag,cur,ppm_error=5,lr=None,verbose=False):
         mz = float(mz)
         ppm_error = float(ppm_error)
         if iontag == 1:
@@ -179,30 +179,34 @@ class SearchModel(object):
             mz = SearchModel.getIon(mz,"+")
 
         ### search in coreset
-        res = self.search_detail(mz,cur,False,ppm_error,verbose)
+        res = self.search_detail(mz,cur,False,ppm_error,lr,verbose)
+        #print(res,mz)
+        #exit()
         ### search in bioextensionset from coreset
-        extres = self.search_detail(mz,cur,True,ppm_error,verbose)
+        #extres = self.search_detail(mz,cur,True,ppm_error,lr,verbose)
         #print(res[0])
         #print(extres[0])
 
         ### result merge by weight
-        lastres = self.merge(res,extres)
+        #lastres = self.merge(res,extres)
+        lastres = res
         #exit()
         if len(lastres) == 0:
             return [""]
         res1 = []
-        for i in sorted(lastres,key=lambda x:-int(x[-1])):
+        #for i in sorted(lastres,key=lambda x:-int(x[-1])):
         #for i in sorted(res,key=lambda x:-int(x[-1])):
+        for i in lastres:
             s, s1 = self.convertCodeToAtom(i[2], self.codes1)
             tag = self.tag[i[3]]
-            res1.append([i[0],s1,i[6],i[-2],round(i[-1],3),tag])
+            res1.append([i[0],s1,i[6],i[7],round(i[-1],3),tag])
             #break
         return res1
         pass
 
 
     ### main function for formula assignment, 5 sqls should be performed
-    def search_detail(self,mz,cur,exttag,ppm,verbose):
+    def search_detail(self,mz,cur,exttag,ppm,lr,verbose):
         mzl = mz - ppm / 1e6 * mz
         mzh = mz + ppm / 1e6 * mz
         sql1 = "select node from dbindex as a where a.start <= {0:.5f} and a.end >= {1:.5f};".format(mzh,mzl)
@@ -280,8 +284,7 @@ class SearchModel(object):
                 print("Error")
         if verbose:
             print("start end",startedge,endedge)
-        sql5 = "select * from link{0:d} as b,  shift as c where b.nodeid between {1:d} and {2:d} and c.id = b.linkid;".format(
-            startedge, mins, maxs)
+        sql5 = "select * from link{0:d} as b,  shift as c where b.nodeid between {1:d} and {2:d} and c.id = b.linkid;".format(startedge, mins, maxs)
         if verbose:
             print("sql5",sql5)
         cur.execute(sql5)
@@ -310,6 +313,11 @@ class SearchModel(object):
                 else:
                     hfreqweight[toid] += 1
         lists = []
+        maxsn = -1
+        maxsc = -1
+        maxbio = -1
+        maxdb = -1
+        maxppm = -1
         for i in hmzs:
             #if i in used:
             #    if i not in used_3:
@@ -319,21 +327,54 @@ class SearchModel(object):
             #    if i not in used_de:
             #        used_de[i] = 0
             ppm = round(abs(hmzs[i]-mz)/mz * 1e6,3)
+            if maxsn <= hweight[i]:
+                maxsn = hweight[i]
+            if maxsc <= istargetref[i]:
+                maxsc = istargetref[i]
+            if maxbio <= hbiofreqweight[i]:
+                maxbio = hbiofreqweight[i]
+            if maxdb <= hfreqweight[i]:
+                maxdb = hfreqweight[i]
+            if maxppm <= ppm:
+                maxppm = ppm
             lists.append([i,hweight[i],used[i],istargetref[i],hbiofreqweight[i],hfreqweight[i],hmzs[i],ppm])
-        res = []
-        sup = 0.01
-        if exttag:
-            sup = sqrt(mz/100)
         c = 0
-        for i in sorted(lists,key=lambda x:-(int(x[1])/(x[-1] + sup) + x[3] + x[4]/10 + x[5]/50)):
-            if c < 10:
-                #print(i,w[i[0]])
-                score = log2(int(i[1])/(i[-1] + sup) + i[3] + i[4]/10 + i[5]/50 + 0.5)
-                res.append([i[0],i[1],i[2],i[3],i[4],i[5],i[6],i[7],score])
+        lists = sorted(lists,key = lambda x:-(int(x[1]) + x[3] +  x[4] + x[5]))
+        forms = []
+        used = {}
+        #print(maxsn,maxsc,maxbio,maxdb)
+        for target in lists[:10000]:
+            hid = target[0]
+            if hid in used:continue
+            used[hid] = ""
+            xs = []
+            if maxsn != 0:
+                xs.append(target[1]/maxsn)
             else:
-                break
-            c += 1
-        return res
+                xs.append(0)
+            #if maxsc != 0:
+            #    xs.append(target[3]/maxsc)
+            #else:
+            #    xs.append(0)
+            if maxbio != 0:
+                xs.append(target[4]/maxbio)
+            else:
+                xs.append(0)
+            if maxdb != 0:
+                xs.append(target[5]/maxdb)
+            else:
+                xs.append(0)
+            if maxppm != 0:
+                xs.append(target[-1]/maxppm)
+            else:
+                xs.append(0)
+            xs = nan_to_num(xs)
+            y_pred = lr.predict([xs])
+            target.extend(xs)
+            target.append(float(y_pred[0]))
+            forms.append(target)
+        forms = sorted(forms,key=lambda x:-float(x[-1]))
+        return forms[:3]
         pass
 
     ### merge all results with weight

@@ -15,6 +15,7 @@ from PyQt5.QtWidgets import QTableWidgetItem,QMessageBox
 from PyQt5.QtCore import Qt
 from core import SearchModel
 import sqlite3
+import pickle
 
 class MainWindow(QMainWindow,Ui_MainWindow):
     def __init__(self,parent=None):
@@ -65,6 +66,9 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         allres = []
         iontag = self.group.checkedId()
         rowC = 0
+        fin = open("lr_4f.pkl","rb")
+        lr = pickle.load(fin)
+        fin.close()
 
         for mz in text.strip().split("\n"):
             if mz == "":continue
@@ -72,7 +76,7 @@ class MainWindow(QMainWindow,Ui_MainWindow):
                 QMessageBox.warning(None, "Error", mz + " need integer/float value.")
                 return
             allmz.append(mz)
-            res = self.sm.search(mz,iontag,self.cur,ppm_error=ppm,verbose=False)
+            res = self.sm.search(mz,iontag,self.cur,ppm_error=ppm,lr=lr,verbose=False)
             rowC += len(res)
             allres.append(res)
         self.myTable.clear()
