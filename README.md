@@ -24,7 +24,7 @@ python Main.py
 ## Assign formula with command line
 
 ```  
-SMART.py [-h] -i INPUT [-p POLARITY] -d DATABASE [-e EXTENSION] [-m PPM] [-v VERBOSE]
+usage: SMART.py [-h] -i INPUT [-p POLARITY] -d DATABASE -l MODEL [-m PPM]
 
 Program: SMART_CMD
 Version: 1.0
@@ -39,19 +39,20 @@ options:
                         Polarity information for formula assignment. (Default: +, [-,0])
   -d DATABASE, --database DATABASE
                         SMART-Database file for formula assignment.
+  -l MODEL, --model MODEL
+                        MLR model file for formula assignment.
   -m PPM, --ppm PPM     PPM threshold for formula assignment (Default: 5).
-  -v VERBOSE, --verbose VERBOSE
-                        Peak group per mz for formula assignment (Default: 5; Only integer large than 1).
+
 
 ```
 ## Examples
 1. To annotate all formulae stored in a file named as "temp.list", use the following code
 ```
-  py SMART.py -i temp.list -d smart.db -p 0
+  py SMART.py -i temp.list -d smart.db -l lr_4f.pkl -p 0
 ```
 2. To annotate a single formula, use the following code
 ```
-  py SMART.py -i 185.9934 -d smart.db -p 0
+  py SMART.py -i 185.9934 -d smart.db -l lr_4f.pkl -p 0
 ```
 
 ## SMART-Database download
